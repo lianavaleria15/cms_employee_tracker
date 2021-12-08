@@ -59,9 +59,24 @@ const start = async () => {
     }
 
     if (actionChoice === "addEmployee") {
+      const {
+        newEmployeeFirstName,
+        newEmployeeLastName,
+        newEmployeeRole,
+        newEmployeeManager,
+      } = await inquirer.prompt(addEmployee);
+
+      console.log(
+        newEmployeeFirstName,
+        newEmployeeLastName,
+        newEmployeeRole,
+        newEmployeeManager
+      );
     }
 
     if (actionChoice === "updateEmployeeRole") {
+      const { updateRole, newRole } = await inquirer.prompt(updateEmployeeRole);
+      console.log(newRole, updateRole);
     }
 
     //break while loop if exit action was selected
