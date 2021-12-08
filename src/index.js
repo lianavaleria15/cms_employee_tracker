@@ -1,8 +1,16 @@
 //import inquirer
 const inquirer = require("inquirer");
 
-//import user question here
+//import start question here
 const { startQuestion } = require("./utils/startQuestion");
+
+//import add action questions here
+
+const {
+  addDepartment,
+  addRole,
+  addEmployee,
+} = require("./utils/startQuestion");
 
 const displayDepartments = () => {
   //execute mysql query
@@ -15,9 +23,18 @@ const displayRoles = () => {
 };
 
 //initialize app
-const start = () => {
+const start = async () => {
   //declare one question with list of actions
+  const startAnswer = await inquirer.prompt(startQuestion);
+
+  console.log(startAnswer);
+
   //prompt question and get answer (action)
+  if (startAnswer === "viewDepartments") {
+    const newDepartment = await inquirer.prompt(addDepartment);
+    console.log(newDepartment);
+  }
+
   //insert if blocks for all actions
 };
 

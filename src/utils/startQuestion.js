@@ -9,15 +9,15 @@ const startQuestion = [
     choices: [
       //view choices
       {
-        value: "allDepartments",
+        value: "viewDepartments",
         name: "View all departments",
       },
       {
-        value: "allRoles",
+        value: "viewRoles",
         name: "View all roles",
       },
       {
-        value: "allEmployees",
+        value: "viewEmployees",
         name: "View all employees",
       },
 
@@ -43,3 +43,5 @@ const startQuestion = [
     ],
   },
 ];
+
+module.exports = { startQuestion };
