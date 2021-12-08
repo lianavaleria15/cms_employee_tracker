@@ -2,9 +2,8 @@
 const inquirer = require("inquirer");
 
 //import user question here
-const { userQuestion } = require("./utils/question");
+const { startQuestion } = require("./utils/startQuestion");
 
-console.log(userQuestion);
 const displayDepartments = () => {
   //execute mysql query
   //log/table departments
