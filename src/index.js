@@ -32,19 +32,44 @@ const start = async () => {
 
     console.log(actionChoice);
 
-    //prompt question and get answer (action)
+    //insert if blocks for all actions: prompt question and get answers
+    if (actionChoice === "viewDepartments") {
+      console.log("view departments");
+    }
+
+    if (actionChoice === "viewRoles") {
+      console.log("view roles");
+    }
+
+    if (actionChoice === "viewEmployees") {
+      console.log("view employees");
+    }
+
     if (actionChoice === "addDepartment") {
       const { newDepartment } = await inquirer.prompt(addDepartment);
+
       console.log(newDepartment);
+    }
+
+    if (actionChoice === "addRole") {
+      const { newRole, roleSalary, departmentType } = await inquirer.prompt(
+        addRole
+      );
+      console.log(newRole, roleSalary, departmentType);
+    }
+
+    if (actionChoice === "addEmployee") {
+    }
+
+    if (actionChoice === "updateEmployeeRole") {
     }
 
     //break while loop if exit action was selected
     if (actionChoice === "exitApp") {
       inProgress = false;
+      process.exit(0);
     }
   }
-
-  //insert if blocks for all actions
 };
 
 start();
