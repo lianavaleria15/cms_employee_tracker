@@ -1,9 +1,7 @@
 //import inquirer
 const inquirer = require("inquirer");
 
-//import mysql
-const mysql = require("mysql2");
-
+const cTable = require("console.table");
 //import start question here
 const {
   startQuestion,
@@ -13,12 +11,11 @@ const {
   updateEmployeeRole,
 } = require("./utils/questions");
 
-const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "Password123!!",
-  database: "company_db",
-});
+//import util fs to access db data
+const { sendQuery } = require("./utils/utils");
+
+//import db queries
+const { getDepartments, getRoles, getEmployees } = require("./utils/queries");
 
 const displayDepartments = () => {
   //execute mysql query
@@ -40,19 +37,20 @@ const start = async () => {
     //declare one question with list of actions
     const { actionChoice } = await inquirer.prompt(startQuestion);
 
-    console.log(actionChoice);
-
     //insert if blocks for all actions: prompt question and get answers
     if (actionChoice === "viewDepartments") {
-      console.log("view departments");
+      const allDepartments = await sendQuery(getDepartments);
+      console.table(allDepartments);
     }
 
     if (actionChoice === "viewRoles") {
-      console.log("view roles");
+      const allRoles = await sendQuery(getRoles);
+      console.table(allRoles);
     }
 
     if (actionChoice === "viewEmployees") {
-      console.log("view employees");
+      const allEmployees = await sendQuery(getEmployees);
+      console.table(allEmployees);
     }
 
     if (actionChoice === "addDepartment") {
