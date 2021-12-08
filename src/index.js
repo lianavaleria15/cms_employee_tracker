@@ -1,14 +1,24 @@
 //import inquirer
 const inquirer = require("inquirer");
 
+//import mysql
+const mysql = require("mysql2");
+
 //import start question here
-const { startQuestion } = require("./utils/startQuestion");
+const {
+  startQuestion,
+  addDepartment,
+  addRole,
+  addEmployee,
+  updateEmployeeRole,
+} = require("./utils/questions");
 
-//import add action questions here
-const { addDepartment, addRole, addEmployee } = require("./utils/addQuestions");
-
-//import update questions here
-const { updateEmployeeRole } = require("./utils/updateQuestions");
+const db = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "Password123!!",
+  database: "company_db",
+});
 
 const displayDepartments = () => {
   //execute mysql query
