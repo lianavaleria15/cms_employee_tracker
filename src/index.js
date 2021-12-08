@@ -5,11 +5,7 @@ const inquirer = require("inquirer");
 const { startQuestion } = require("./utils/startQuestion");
 
 //import add action questions here
-const {
-  addDepartment,
-  addRole,
-  addEmployee,
-} = require("./utils/startQuestion");
+const { addDepartment, addRole, addEmployee } = require("./utils/addQuestions");
 
 //import update questions here
 const { updateEmployeeRole } = require("./utils/updateQuestions");
@@ -26,15 +22,26 @@ const displayRoles = () => {
 
 //initialize app
 const start = async () => {
-  //declare one question with list of actions
-  const startAnswer = await inquirer.prompt(startQuestion);
+  //declare variable to track in progress
+  let inProgress = true;
 
-  console.log(startAnswer);
+  //setup while loop to prompt action choices
+  while (inProgress) {
+    //declare one question with list of actions
+    const { actionChoice } = await inquirer.prompt(startQuestion);
 
-  //prompt question and get answer (action)
-  if (startAnswer === "viewDepartments") {
-    const newDepartment = await inquirer.prompt(addDepartment);
-    console.log(newDepartment);
+    console.log(actionChoice);
+
+    //prompt question and get answer (action)
+    if (actionChoice === "addDepartment") {
+      const { newDepartment } = await inquirer.prompt(addDepartment);
+      console.log(newDepartment);
+    }
+
+    //break while loop if exit action was selected
+    if (actionChoice === "exitApp") {
+      inProgress = false;
+    }
   }
 
   //insert if blocks for all actions

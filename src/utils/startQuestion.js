@@ -3,7 +3,7 @@ const startQuestion = [
   {
     type: "list",
     message: "What would you like to do?",
-    name: "startQuestion",
+    name: "actionChoice",
 
     //create each action question
     choices: [
@@ -39,6 +39,12 @@ const startQuestion = [
       {
         value: "updateEmployeeRole",
         name: "Update an employee role",
+      },
+
+      //exit app
+      {
+        value: "exitApp",
+        name: "Exit application",
       },
     ],
   },
