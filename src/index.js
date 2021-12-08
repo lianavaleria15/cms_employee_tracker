@@ -5,12 +5,14 @@ const inquirer = require("inquirer");
 const { startQuestion } = require("./utils/startQuestion");
 
 //import add action questions here
-
 const {
   addDepartment,
   addRole,
   addEmployee,
 } = require("./utils/startQuestion");
+
+//import update questions here
+const { updateEmployeeRole } = require("./utils/updateQuestions");
 
 const displayDepartments = () => {
   //execute mysql query
