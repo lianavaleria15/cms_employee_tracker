@@ -1,3 +1,6 @@
+//import fs to generate lsit departments
+const { generateDepartmentList, generateRolesList } = require("./utils");
+
 //create start question
 const startQuestion = [
   {
@@ -70,9 +73,10 @@ const addRole = [
     message: "What is the salary of the role?",
   },
   {
-    type: "input",
+    type: "list",
     name: "departmentType",
     message: "Which department does the role belong to?",
+    choices: generateDepartmentList,
   },
 ];
 
@@ -89,9 +93,9 @@ const addEmployee = [
     message: "What is the employee's last name?",
   },
   {
-    type: "input",
+    type: "list",
     name: "newEmployeeRole",
-    message: "What is the employee's role?",
+    choices: generateRolesList,
   },
   {
     type: "input",

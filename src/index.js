@@ -55,31 +55,47 @@ const start = async () => {
 
     if (actionChoice === "addDepartment") {
       const { newDepartment } = await inquirer.prompt(addDepartment);
-
       console.log(newDepartment);
+      await sendQuery(
+        `INSERT INTO department (name) VALUES ("${newDepartment}")`
+      );
+      console.log("The department was added");
     }
 
     if (actionChoice === "addRole") {
-      const { newRole, roleSalary, departmentType } = await inquirer.prompt(
-        addRole
-      );
-      console.log(newRole, roleSalary, departmentType);
+      const allDepartments = await sendQuery(getDepartments);
+      if (allDepartments.length) {
+        const { newRole, roleSalary, departmentType } = await inquirer.prompt(
+          addRole
+        );
+        await sendQuery(
+          `INSERT INTO roles (title, salary, departmentId) VALUES ("${newRole}", "${roleSalary}", "${departmentType}")`
+        );
+        console.log("The role was added");
+      }
     }
 
     if (actionChoice === "addEmployee") {
-      const {
-        newEmployeeFirstName,
-        newEmployeeLastName,
-        newEmployeeRole,
-        newEmployeeManager,
-      } = await inquirer.prompt(addEmployee);
+      //get roles
+      const allRoles = await sendQuery(getRoles);
 
-      console.log(
-        newEmployeeFirstName,
-        newEmployeeLastName,
-        newEmployeeRole,
-        newEmployeeManager
-      );
+      //if there are any roles
+      if (allRoles.length) {
+        //prompt add employee questions
+        const {
+          newEmployeeFirstName,
+          newEmployeeLastName,
+          newEmployeeRole,
+          newEmployeeManager,
+        } = await inquirer.prompt(addEmployee);
+
+        console.log(
+          newEmployeeFirstName,
+          newEmployeeLastName,
+          newEmployeeRole,
+          newEmployeeManager
+        );
+      }
     }
 
     if (actionChoice === "updateEmployeeRole") {

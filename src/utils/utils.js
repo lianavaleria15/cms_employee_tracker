@@ -1,4 +1,5 @@
 //import mysql
+const { restoreDefaultPrompts } = require("inquirer");
 const mysql = require("mysql2");
 
 const db = mysql.createConnection({
@@ -21,4 +22,39 @@ const sendQuery = (query) => {
   });
 };
 
-module.exports = { sendQuery };
+const generateDepartmentList = async () => {
+  const allDepartments = await sendQuery(`SELECT * FROM department`);
+
+  return allDepartments.map((department) => {
+    return { name: department.name, value: department.id };
+  });
+};
+
+const generateRolesList = async () => {
+  const allRoles = await sendQuery(`SELECT * FROM roles`);
+
+  return allRoles.map((roles) => {
+    return {
+      name: roles.title,
+      value: roles.id,
+    };
+  });
+};
+
+const generateManagersList = async () => {
+  const allManagers = await sendQuery(``);
+
+  return allManagers.map((manager) => {
+    return {
+      name: manager.name,
+      value: manager.id,
+    };
+  });
+};
+
+module.exports = {
+  sendQuery,
+  generateDepartmentList,
+  generateRolesList,
+  generateManagersList,
+};

@@ -11,5 +11,9 @@ LEFT JOIN roles
 ON employee.roleId=roles.id 
 LEFT JOIN department
 ON roles.departmentId=department.id;`;
+
+//insert new department query
+const addDepartment = `INSERT INTO department (name) VALUES ('Finance')`;
+
 //exports queries
 module.exports = { getDepartments, getRoles, getEmployees };
