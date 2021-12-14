@@ -76,31 +76,30 @@ const start = async () => {
     }
 
     if (actionChoice === "addEmployee") {
-      //get roles
-      const allRoles = await sendQuery(getRoles);
+      //prompt add employee questions
+      const {
+        newEmployeeFirstName,
+        newEmployeeLastName,
+        newEmployeeRole,
+        newEmployeeManager,
+      } = await inquirer.prompt(addEmployee);
 
-      //if there are any roles
-      if (allRoles.length) {
-        //prompt add employee questions
-        const {
-          newEmployeeFirstName,
-          newEmployeeLastName,
-          newEmployeeRole,
-          newEmployeeManager,
-        } = await inquirer.prompt(addEmployee);
-
-        console.log(
-          newEmployeeFirstName,
-          newEmployeeLastName,
-          newEmployeeRole,
-          newEmployeeManager
-        );
-      }
+      //write to db
+      await sendQuery(
+        `INSERT INTO employee (firstName, lastName, roleId, managerId) VALUES("${newEmployeeFirstName}", "${newEmployeeLastName}", ${newEmployeeRole}, ${newEmployeeManager})`
+      );
     }
 
     if (actionChoice === "updateEmployeeRole") {
+      // present list of employees
+      //user selects
+      // present list of roles for the new role, excluding present role
+      //get role id,
+
       const { updateRole, newRole } = await inquirer.prompt(updateEmployeeRole);
-      console.log(newRole, updateRole);
+      await sendQuery(
+        `UPDATE employee SET roleId = ${updateRole} WHERE id= userId`
+      );
     }
 
     //break while loop if exit action was selected

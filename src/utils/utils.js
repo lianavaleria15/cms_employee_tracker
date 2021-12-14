@@ -42,7 +42,9 @@ const generateRolesList = async () => {
 };
 
 const generateManagersList = async () => {
-  const allManagers = await sendQuery(``);
+  const allManagers = await sendQuery(
+    `SELECT id, CONCAT (firstName, " ", lastName) AS name FROM employee`
+  );
 
   return allManagers.map((manager) => {
     return {
@@ -52,6 +54,15 @@ const generateManagersList = async () => {
   });
 };
 
+const generateEmployeeList = async () => {
+  const allEmployees = await sendQuery(`SELECT * FROM employee`);
+  return allEmployees.map((employee) => {
+    return {
+      name: employee.firstName,
+      value: employee.id,
+    };
+  });
+};
 module.exports = {
   sendQuery,
   generateDepartmentList,
