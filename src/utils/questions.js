@@ -3,6 +3,7 @@ const {
   generateDepartmentList,
   generateRolesList,
   generateManagersList,
+  generateEmployeeList,
 } = require("./utils");
 
 //create start question
@@ -111,14 +112,17 @@ const addEmployee = [
 //questions prompted to update an employee role
 const updateEmployeeRole = [
   {
-    type: "input",
-    name: "updateRole",
-    message: "Which employee's role do you want to update",
+    type: "list",
+    message: "Select the employee name you would like to update the role for:",
+    name: "employeeId",
+    choices: generateEmployeeList,
   },
+
   {
-    type: "input",
-    name: "newRole",
-    message: "What is the name of the new role?",
+    type: "list",
+    name: "updateRoleId",
+    message: "Select the role to update:",
+    choices: generateRolesList,
   },
 ];
 

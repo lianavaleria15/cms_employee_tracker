@@ -91,14 +91,13 @@ const start = async () => {
     }
 
     if (actionChoice === "updateEmployeeRole") {
-      // present list of employees
-      //user selects
-      // present list of roles for the new role, excluding present role
-      //get role id,
+      // user selects from present list of employees
+      const { employeeId, updateRoleId } = await inquirer.prompt(
+        updateEmployeeRole
+      );
 
-      const { updateRole, newRole } = await inquirer.prompt(updateEmployeeRole);
       await sendQuery(
-        `UPDATE employee SET roleId = ${updateRole} WHERE id= userId`
+        `UPDATE employee SET roleId = ${updateRoleId} WHERE id= ${employeeId}`
       );
     }
 

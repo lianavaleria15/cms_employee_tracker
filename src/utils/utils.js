@@ -68,4 +68,5 @@ module.exports = {
   generateDepartmentList,
   generateRolesList,
   generateManagersList,
+  generateEmployeeList,
 };
