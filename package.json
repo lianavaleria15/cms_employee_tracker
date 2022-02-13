@@ -1,0 +1,26 @@
+{
+  "name": "cms_employee_tracker",
+  "version": "1.0.0",
+  "description": "A command line app that manages a company's employee database, using Node.js, Inquirer, and MySQL.",
+  "main": "index.js",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "inquirer": "^8.2.0",
+    "mysql2": "^2.3.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lianavaleria15/cms_employee_tracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lianavaleria15/cms_employee_tracker/issues"
+  },
+  "homepage": "https://github.com/lianavaleria15/cms_employee_tracker#readme"
+}
